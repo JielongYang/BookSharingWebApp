@@ -11,11 +11,11 @@ namespace _netmvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IBookRepository _bookRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBookRepository bookRepository)
         {
-            _logger = logger;
+            _bookRepository = new MockBookRepository();
         }
 
         public IActionResult Index()
@@ -32,6 +32,18 @@ namespace _netmvc.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public ViewResult Details() {
+            Book model = _bookRepository.GetBook(1);
+            ViewBag.Book = model;
+            return View();
+        }
+
+
+        public IActionResult Create() {
+            // string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"images");
+            return View();
         }
     }
 }

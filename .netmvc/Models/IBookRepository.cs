@@ -1,7 +1,9 @@
 using _netmvc.Models;
+using System.Collections.Generic;
 
 public interface IBookRepository {
-    Book GetBookById(int id);
+    Book GetBook(int id);
+    IEnumerable<Book> GetAllBooks();
 
 
 }
