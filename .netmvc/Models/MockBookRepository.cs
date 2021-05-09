@@ -29,6 +29,12 @@ public class MockBookRepository : IBookRepository {
     public Book GetBook(int id) {
         return _bookList.FirstOrDefault(x => x.id == id);
     }
+
+    public Book Insert(Book book) {
+        book.id = _bookList.Max(b => b.id) + 1;
+        _bookList.Add(book);
+        return book;
+    }
         
     
     

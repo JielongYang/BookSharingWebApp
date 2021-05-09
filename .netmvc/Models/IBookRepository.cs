@@ -5,5 +5,7 @@ public interface IBookRepository {
     Book GetBook(int id);
     IEnumerable<Book> GetAllBooks();
 
+    Book Insert(Book book);
+
 
 }

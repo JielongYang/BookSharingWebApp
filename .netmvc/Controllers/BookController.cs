@@ -1,23 +1,23 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 
 namespace _netmvc.Controllers
 {
     public class BookController : Controller
     {
-        // private readonly ;
-
-        // public BookController()
-        // {
-            
-        // }
-        public string index()
+        public IActionResult Upload()
         {
-            return "Book";
+
+            return View();
         }
-        public string list(){
-            return "list";
+        [HttpPost]
+        public IActionResult Upload(BookCreateViewModel model)
+        {
+            string name = model.name;
+            IFormFile file = model.cover;
+            return View(model);
         }
 
 

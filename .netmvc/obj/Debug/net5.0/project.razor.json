@@ -15644,6 +15644,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\code\\.netmvc\\Views\\Book\\upload.cshtml",
+      "TargetPath": "Views\\Book\\upload.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\code\\.netmvc\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"

@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using _netmvc.Models;
-
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 namespace _netmvc.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IBookRepository bookRepository)
+
+        public HomeController(IBookRepository bookRepository,IWebHostEnvironment webHostEnvironment)
         {
             _bookRepository = new MockBookRepository();
+            _webHostEnvironment =  webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -40,10 +45,30 @@ namespace _netmvc.Controllers
             return View();
         }
 
-
-        public IActionResult Create() {
-            // string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"images");
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Create(BookCreateViewModel model) {
+
+            if(ModelState.IsValid) {
+                string uniqueFileName = null;
+                if(model.cover != null) {
+                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.cover.FileName;
+                    string filePath = Path.Combine(uploadsFolder,uniqueFileName);
+                    model.cover.CopyTo(new FileStream(filePath,FileMode.Create));
+                }
+                Book book = new Book() {
+                    name = model.name,
+                    cover = uniqueFileName
+                };
+                _bookRepository.Insert(book);
+                return View(model);
+            }
+            return View(model);
         }
     }
 }

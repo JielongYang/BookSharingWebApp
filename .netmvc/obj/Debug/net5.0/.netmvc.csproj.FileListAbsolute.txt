@@ -72,3 +72,4 @@ C:\code\.netmvc\bin\Debug\net5.0\Humanizer.dll
 C:\code\.netmvc\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\code\.netmvc\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
 C:\code\.netmvc\obj\Debug\net5.0\Razor\Views\Home\Create.cshtml.g.cs
+C:\code\.netmvc\obj\Debug\net5.0\Razor\Views\Book\Upload.cshtml.g.cs
