@@ -9,6 +9,7 @@ using _netmvc.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
 namespace _netmvc.Controllers
 {
     public class HomeController : Controller
@@ -69,6 +70,25 @@ namespace _netmvc.Controllers
                 return View(model);
             }
             return View(model);
+        }
+
+        public IActionResult Download(){
+            return View();
+        }
+
+        [HttpGet("Download/{filename}")]
+        public FileStream Download(string filename){
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"images");
+            string filePath = Path.Combine(uploadsFolder,filename);
+            FileStream file = new FileStream(filePath,FileMode.Open);
+            
+            // var stream = System.IO.File.OpenRead(filePath);
+            // string fileExt = Path.GetExtension(filename);
+            // var provider = new FileExtensionContentTypeProvider();
+            // var memi = provider.Mappings[fileExt];
+
+            return file;
+            
         }
     }
 }

@@ -15644,8 +15644,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\code\\.netmvc\\Views\\Book\\upload.cshtml",
-      "TargetPath": "Views\\Book\\upload.cshtml",
+      "FilePath": "c:\\code\\.netmvc\\Views\\Book\\Upload.cshtml",
+      "TargetPath": "Views\\Book\\Upload.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15666,6 +15666,11 @@
     {
       "FilePath": "c:\\code\\.netmvc\\Views\\Home\\Create.cshtml",
       "TargetPath": "Views\\Home\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\code\\.netmvc\\Views\\Home\\Download.cshtml",
+      "TargetPath": "Views\\Home\\Download.cshtml",
       "FileKind": "mvc"
     }
   ],
