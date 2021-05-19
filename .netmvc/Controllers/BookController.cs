@@ -16,12 +16,14 @@ namespace _netmvc.Controllers
     {
          private readonly IBookRepository _bookRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly BookContext _context;
 
 
-        public BookController(IBookRepository bookRepository,IWebHostEnvironment webHostEnvironment)
+        public BookController(IBookRepository bookRepository,IWebHostEnvironment webHostEnvironment,BookContext context)
         {
-            _bookRepository = new MockBookRepository();
+            _bookRepository = new SQLBookRepository();
             _webHostEnvironment =  webHostEnvironment;
+            _context = context;
         }
 
         public IActionResult Upload()
@@ -38,23 +40,23 @@ namespace _netmvc.Controllers
         }
          [HttpGet("/")]
         public IEnumerable<Book> GetAll() {
-            IEnumerable<Book> list = _bookRepository.GetAllBooks();
+            IEnumerable<Book> list = _context.Books.ToList();
 
             return list;  
         }
 
         public ViewResult Details() {
-            Book model = _bookRepository.GetBook(1);
+            Book model = _bookRepository.GetBook("1");
             ViewBag.Book = model;
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(BookCreateViewModel model) {
 
             if(ModelState.IsValid) {
@@ -66,10 +68,12 @@ namespace _netmvc.Controllers
                     model.cover.CopyTo(new FileStream(filePath,FileMode.Create));
                 }
                 Book book = new Book() {
+                    id = "3",
                     name = model.name,
-                    cover = uniqueFileName
+                    cover = uniqueFileName,
+                    entity = "entity3"
                 };
-                _bookRepository.Insert(book);
+                _context.Books.Add(book);
                 return View(model);
             }
             return View(model);
