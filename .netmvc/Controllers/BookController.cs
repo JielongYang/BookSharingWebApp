@@ -39,10 +39,12 @@ namespace _netmvc.Controllers
             return View(model);
         }
          [HttpGet("/")]
-        public IEnumerable<Book> GetAll() {
+        public ViewResult GetAll() {
             IEnumerable<Book> list = _context.Books.ToList();
 
-            return list;  
+            
+
+            return View(list);  
         }
 
         public ViewResult Details() {

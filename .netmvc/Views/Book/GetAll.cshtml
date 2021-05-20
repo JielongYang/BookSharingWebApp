@@ -1,0 +1,18 @@
+@using _netmvc.Models
+@model List<Book>
+@{
+    Layout = null;
+}
+
+<table>
+       
+        @foreach (Book book in Model)
+        {
+            <tr>
+                <td>@book.id</td>
+                <td>@book.name</td>
+                <td>@book.cover</td>
+                <td>@book.entity</td>
+            </tr>
+        }
+</table>

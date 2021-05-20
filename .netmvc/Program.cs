@@ -15,10 +15,7 @@ namespace _netmvc
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            // using (var db = new BookContext()) {
-            //     db.Add(new Book{id = 2,name = "name2",cover = "cover2",entity="entity2"});
-            //     db.SaveChanges();
-            // }
+         
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

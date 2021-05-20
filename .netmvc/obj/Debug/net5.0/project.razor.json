@@ -15649,6 +15649,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\code\\.netmvc\\Views\\Book\\GetAll.cshtml",
+      "TargetPath": "Views\\Book\\GetAll.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\code\\.netmvc\\Views\\Book\\Upload.cshtml",
       "TargetPath": "Views\\Book\\Upload.cshtml",
       "FileKind": "mvc"

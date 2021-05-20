@@ -14,16 +14,7 @@ namespace _netmvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBookRepository _bookRepository;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-
-        public HomeController(IBookRepository bookRepository,IWebHostEnvironment webHostEnvironment)
-        {
-            _bookRepository = new MockBookRepository();
-            _webHostEnvironment =  webHostEnvironment;
-        }
-
+    
         public IActionResult Index()
         {
             return View();
