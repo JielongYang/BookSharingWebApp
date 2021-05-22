@@ -53,27 +53,31 @@ namespace _netmvc.Controllers
             return View();
         }
 
-        [HttpGet("Create")]
+        [HttpGet("upload")]
         public IActionResult Create()
         {
             return View();
         }
-        [HttpPost("Create")]
+        [HttpPost("upload")]
         public IActionResult Create(BookCreateViewModel model) {
 
             if(ModelState.IsValid) {
-                string uniqueFileName = null;
-                if(model.cover != null) {
+                string filePath = null;
+                string imgPath = null;
+                if(model.cover != null && model.entity != null) {
                     string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath,"images");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.cover.FileName;
-                    string filePath = Path.Combine(uploadsFolder,uniqueFileName);
-                    model.cover.CopyTo(new FileStream(filePath,FileMode.Create));
+                    // uniqueFileName = Guid.NewGuid().ToString() + "_" + model.cover.FileName;
+                    imgPath = Path.Combine(uploadsFolder, model.cover.FileName);
+                    filePath = Path.Combine(uploadsFolder, model.entity.FileName);
+                    
+                    model.cover.CopyTo(new FileStream(imgPath,FileMode.Create));
+                    model.entity.CopyTo(new FileStream(filePath,FileMode.Create));
                 }
                 Book book = new Book() {
-                    id = "3",
+                    id = Guid.NewGuid().ToString(),
                     name = model.name,
-                    cover = uniqueFileName,
-                    entity = "entity3"
+                    cover = model.cover.FileName,
+                    entity = model.entity.FileName
                 };
                 _context.Books.Add(book);
                 return View(model);
