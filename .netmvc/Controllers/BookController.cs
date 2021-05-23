@@ -80,6 +80,7 @@ namespace _netmvc.Controllers
                     entity = model.entity.FileName
                 };
                 _context.Books.Add(book);
+                _context.SaveChanges();
                 return View(model);
             }
             return View(model);
